@@ -2,8 +2,8 @@ using System;
 
 class Program {
   public static void Main (string[] args) {
-    Categoria c1 = new Categoria(1,"Sedan");
-    Categoria c2 = new Categoria(1,"Hatchback");
+    Categoria c1 = new Categoria(1,"Sedan","Sedan",50);
+    Categoria c2 = new Categoria(2,"Hatchback","Hatchback",25);
     
     Console.WriteLine (c1);
     Console.WriteLine (c2);
@@ -33,8 +33,40 @@ class Categoria{
     this.preco = preco > 0 ? preco : 0;
   }
 
+  public void setId(int id){
+    this.id = id;
+  }
+
+  public void setDescricao(string descricao){
+    this.descricao = descricao;
+  }
+
+  public void setTipo(string tipo){
+    this.tipo = tipo;
+  }
+
+  public void setPreco(double preco){
+    this.preco = preco > 0 ? preco : 0;
+  }
+
+  public int getId(){
+    return id;
+  }
+
+  public string getDescricao(){
+    return descricao;
+  }
+
+  public string getTipo(){
+    return tipo;
+  }
+
+  public double getPreco(){
+    return preco;
+  }
+
   public override string ToString(){
-    return id + "-" + descricao + "preco: " + preco.ToString("0.00");
+    return id + " - " + descricao + " preco: " + preco.ToString("0.00");
   }
 }
 
@@ -55,6 +87,46 @@ class Veiculo{
   }
 
   public override string ToString(){
-    return id + "-" + descricao + "-" + modelo + "-" + marca + "-" + durabilidade;
+    return id + " - " + descricao + " - " + modelo + " - " + marca + " - " + durabilidade;
+  }
+  
+  public void setId(int id){
+    this.id = id;
+  }
+
+  public void setDescricao(string descricao){
+    this.descricao = descricao;
+  }
+
+  public void setModelo(string modelo){
+    this.modelo = modelo;
+  }
+
+  public void setMarca(string marca){
+    this.marca = marca;
+  }
+
+  public void setDurabilidade(double durabilidade){
+    this.durabilidade = durabilidade > 0 ? durabilidade : 0;
+  }
+
+  public int getId(){
+    return id;
+  }
+
+  public string getDescricao(){
+    return descricao;
+  }
+
+  public string getModelo(){
+    return modelo;
+  }
+
+  public string getMarca(){
+    return marca;
+  }
+
+  public double getDurabilidade(){
+    return durabilidade;
   }
 }
