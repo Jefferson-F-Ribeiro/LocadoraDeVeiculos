@@ -2,6 +2,7 @@ using System;
 
 class Program {
   private static NCategoria ncategoria = new NCategoria();
+  private static NVeiculos nveiculos = new NVeiculos();
   public static void Main (string[] args) {
     
     int op = 0;
@@ -29,6 +30,8 @@ class Program {
     Console.WriteLine(" --------------------------");
     Console.WriteLine("|  1 - Categoria - Listar  |");
     Console.WriteLine("|  2 - Categoria - Inserir |");
+    Console.WriteLine("|  3 - Veiculo - Listar    |");
+    Console.WriteLine("|  4 - Veiculo - Inserir   |");
     Console.WriteLine("|  0 - Fim                 |");
     Console.WriteLine(" --------------------------");
     Console.Write("Informe uma opção: ");
@@ -63,4 +66,36 @@ class Program {
     Categoria c = new Categoria(id, descricao,tipo,preco);
     ncategoria.Inserir(c);
   }
+
+  public static void VeiculoListar(){
+      Console.WriteLine("Lista de Veiculos");
+      Veiculo[] vs = nveiculos.Listar();
+      if(vs.Length == 0){
+        Console.WriteLine("Nenhum veiculo cadastrado");
+        return;
+      }
+
+      foreach(Veiculo v in vs) Console.WriteLine(v); Console.WriteLine();
+  }
+
+  public static void VeiculoInserir(){
+      Console.WriteLine("Inserção de Veiculos");
+      Console.Write("Informe um código para o veículo: ");
+      int id = int.Parse(Console.ReadLine());
+      Console.Write("Informe uma descrição: ");
+      string descricao = Console.ReadLine();
+      Console.Write("Informe um modelo: ");
+      string modelo = Console.ReadLine();
+      Console.Write("Informe uma marca: ");
+      string marca = Console.ReadLine();
+      Console.Write("Informe uma durabilidade: ");
+      double durabilidade = double.Parse(Console.ReadLine());
+
+    Veiculo v = new Veiculo(id,descricao,modelo,marca,durabilidade);
+    nveiculos.Inserir(v);
+  }
+
+
+
+
 }
