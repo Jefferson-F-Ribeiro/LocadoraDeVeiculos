@@ -117,7 +117,7 @@ class Program {
 
   public static void VeiculoInserir(){
       Console.WriteLine("Inserção de Veiculos");
-      Console.Write("Informe um código para o veículo: ");
+      Console.Write("Informe um código para o veiculo: ");
       int id = int.Parse(Console.ReadLine());
       Console.Write("Informe uma descrição: ");
       string descricao = Console.ReadLine();
@@ -137,12 +137,37 @@ class Program {
     nveiculos.Inserir(v);
   }
 
-    public static void VeiculoAtualizar(){
+  
+  public static void VeiculoAtualizar(){
+    Console.WriteLine("Atualização de Veiculos");
+    VeiculoListar();
+    Console.Write("Informe o código do veiculo que deseja atualizar: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe uma descrição: ");
+    string descricao = Console.ReadLine();
+    Console.Write("Informe um modelo: ");
+    string modelo = Console.ReadLine();
+    Console.Write("Informe uma marca: ");
+    string marca = Console.ReadLine();
+    Console.Write("Informe uma durabilidade: ");
+    double durabilidade = double.Parse(Console.ReadLine());
+    CategoriaListar();
+    Console.Write("Informe a categoria: ");
+    int idcategoria = int.Parse(Console.ReadLine());
 
+    Categoria c = ncategoria.Listar(idcategoria);
+
+    Veiculo v = new Veiculo(id,descricao,modelo,marca,durabilidade,c);
+    nveiculos.Atualizar(v);
   }
 
   public static void VeiculoExcluir(){
-
+    Console.WriteLine("Exclusão de Veiculos");
+    VeiculoListar();
+    Console.Write("Informe o código do veiculo que deseja excluir: ");
+    int id = int.Parse(Console.ReadLine());
+    Veiculo v = nveiculos.Listar(id);
+    nveiculos.Excluir(v);
   }
 
 

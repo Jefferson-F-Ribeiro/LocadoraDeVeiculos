@@ -6,7 +6,7 @@ class Categoria{
   private string tipo;
   private double preco;
   private Veiculo[] veiculos = new Veiculo[10];
-  private int np;
+  private int nv;
 
   public Categoria(int id, string descricao, string tipo, double preco){
     this.id = id;
@@ -48,20 +48,34 @@ class Categoria{
   }
 
   public Veiculo[] VeiculoListar(){
-    Veiculo[] c = new Veiculo[np];
-    Array.Copy(veiculos, c, np);
+    Veiculo[] c = new Veiculo[nv];
+    Array.Copy(veiculos, c, nv);
     return c;
   }
 
   public void VeiculoInserir(Veiculo v){
-    if (np == veiculos.Length){
+    if (nv == veiculos.Length){
       Array.Resize(ref veiculos, 2 * veiculos.Length);
     }
-    veiculos[np] = v;
-    np++;
+    veiculos[nv] = v;
+    nv++;
+  }
+
+  private int VeiculoIndice(Veiculo v){
+    for(int i = 0; i < nv; i++)
+      if(veiculos[i] == v) return i;
+    return -1;
+  }
+
+  public void VeiculoExcluir(Veiculo v){
+    int n = VeiculoIndice(v);
+    if(n == -1) return;
+    for(int i = n; i < nv - 1; i++)
+      veiculos[i] = veiculos[i+1];
+    nv--;
   }
 
   public override string ToString(){
-    return id + " - " + descricao + " preco: " + preco.ToString("0.00") + " - Nº de veiculos: " + np;
+    return id + " - " + descricao + " preco: " + preco.ToString("0.00") + " - Nº de veiculos: " + nv;
   }
 }
