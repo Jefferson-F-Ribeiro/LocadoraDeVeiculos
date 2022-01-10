@@ -1,7 +1,7 @@
 using System;
 
 class Program {
-  public static void Main (string[] args) {
+  public static void Main (string[] args) {/*
     Categoria c1 = new Categoria(1,"Sedan","Sedan",50);
     Categoria c2 = new Categoria(2,"Hatchback","Hatchback",25);
     Categoria c3 = new Categoria(3,"SUV","SUV",75);
@@ -41,7 +41,47 @@ class Program {
     v = c3.VeiculoListar();
     Console.Write("Veiculos na categoria: ");
     Console.WriteLine(c3.getDescricao());
-    foreach (Veiculo x in v) Console.WriteLine(x);
+    foreach (Veiculo x in v) Console.WriteLine(x);*/
 
+    int op = 0;
+    Console.WriteLine(".~*-.~*-.~*-.~*-.~*-.~*-.~*.");
+    Console.WriteLine("|   Locadora de Veículos   |");
+    Console.WriteLine(".~*-.~*-.~*-.~*-.~*-.~*-.~*.");
+    do {
+      try{
+      op = Menu();
+      switch(op){
+        case 1 : CategoriaListar(); break;
+        case 2 : CategoriaInserir(); break;
+      }
+    } catch (Exception erro){
+      Console.WriteLine(erro.Message);
+      op = 100;
+    }
+
+    } while (op != 0);
+    Console.WriteLine("Encerrado programa...");
+  }
+
+  public static int Menu(){
+    Console.WriteLine();
+    Console.WriteLine(" --------------------------");
+    Console.WriteLine("|  1 - Categoria - Listar  |");
+    Console.WriteLine("|  2 - Categoria - Inserir |");
+    Console.WriteLine("|  0 - Fim                 |");
+    Console.WriteLine(" --------------------------");
+    Console.Write("Informe uma opção: ");
+
+    int op = int.Parse(Console.ReadLine());
+    Console.WriteLine();
+    return op;
+  }
+
+  public static void CategoriaListar(){
+      Console.WriteLine("Lista de Categorias");
+  }
+
+  public static void CategoriaInserir(){
+      Console.WriteLine("Inserção de Categorias");
   }
 }
