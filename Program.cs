@@ -15,6 +15,12 @@ class Program {
       switch(op){
         case 1 : CategoriaListar(); break;
         case 2 : CategoriaInserir(); break;
+        case 3 : CategoriaAtualizar(); break;
+        case 4 : CategoriaExcluir(); break;
+        case 5 : VeiculoListar(); break;
+        case 6 : VeiculoInserir(); break;
+        case 7 : VeiculoAtualizar(); break;
+        case 8 : VeiculoExcluir(); break;
       }
     } catch (Exception erro){
       Console.WriteLine(erro.Message);
@@ -27,13 +33,17 @@ class Program {
 
   public static int Menu(){
     Console.WriteLine();
-    Console.WriteLine(" --------------------------");
-    Console.WriteLine("|  1 - Categoria - Listar  |");
-    Console.WriteLine("|  2 - Categoria - Inserir |");
-    Console.WriteLine("|  3 - Veiculo - Listar    |");
-    Console.WriteLine("|  4 - Veiculo - Inserir   |");
-    Console.WriteLine("|  0 - Fim                 |");
-    Console.WriteLine(" --------------------------");
+    Console.WriteLine(" ----------------------------");
+    Console.WriteLine("|  1 - Categoria - Listar    |");
+    Console.WriteLine("|  2 - Categoria - Inserir   |");
+    Console.WriteLine("|  3 - Categoria - Atualizar |");
+    Console.WriteLine("|  4 - Categoria - Excluir   |");
+    Console.WriteLine("|  5 - Veiculo - Listar      |");
+    Console.WriteLine("|  6 - Veiculo - Inserir     |");
+    Console.WriteLine("|  7 - Veiculo - Atualizar   |");
+    Console.WriteLine("|  8 - Veiculo - Excluir     |");
+    Console.WriteLine("|  0 - Fim                   |");
+    Console.WriteLine(" ----------------------------");
     Console.Write("Informe uma opção: ");
 
     int op = int.Parse(Console.ReadLine());
@@ -67,6 +77,33 @@ class Program {
     ncategoria.Inserir(c);
   }
 
+    public static void CategoriaAtualizar(){
+    Console.WriteLine("Atualização de Categorias");
+    CategoriaListar();
+    Console.Write("Informe um código da categoria que deseja atualizar: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe uma nova descrição: ");
+    string descricao = Console.ReadLine();
+    Console.Write("Informe um novo tipo: ");
+    string tipo = Console.ReadLine();
+    Console.Write("Informe um novo preço: ");
+    double preco = double.Parse(Console.ReadLine());
+
+    Categoria c = new Categoria(id, descricao,tipo,preco);
+    ncategoria.Atualizar(c);
+
+  }
+
+  public static void CategoriaExcluir(){
+    Console.WriteLine("Exclusão de Categorias");
+    CategoriaListar();
+    Console.Write("Informe um código da categoria que deseja excluir: ");
+    int id = int.Parse(Console.ReadLine());
+    Categoria c = ncategoria.Listar(id);
+    ncategoria.Excluir(c);
+  }
+
+
   public static void VeiculoListar(){
       Console.WriteLine("Lista de Veiculos");
       Veiculo[] vs = nveiculos.Listar();
@@ -90,11 +127,23 @@ class Program {
       string marca = Console.ReadLine();
       Console.Write("Informe uma durabilidade: ");
       double durabilidade = double.Parse(Console.ReadLine());
+      CategoriaListar();
+      Console.Write("Informe a categoria: ");
+      int idcategoria = int.Parse(Console.ReadLine());
 
-    Veiculo v = new Veiculo(id,descricao,modelo,marca,durabilidade);
+      Categoria c = ncategoria.Listar(idcategoria);
+
+    Veiculo v = new Veiculo(id,descricao,modelo,marca,durabilidade,c);
     nveiculos.Inserir(v);
   }
 
+    public static void VeiculoAtualizar(){
+
+  }
+
+  public static void VeiculoExcluir(){
+
+  }
 
 
 
